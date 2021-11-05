@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/Binghamton_university_campus_alley"
+    android:background="@drawable/bing"
     android:gravity="center"
     android:orientation="vertical">
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/playbutton" />
+        android:background="@drawable/playbutton"
+        android:onClick="start"/>
 
     <TextView
         android:layout_width="wrap_content"
