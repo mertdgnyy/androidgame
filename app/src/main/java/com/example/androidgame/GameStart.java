@@ -7,8 +7,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class GameStart extends AppCompatActivity {
 
+    GameScreen gameScreen;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        gameScreen = new GameScreen(this);
+        setContentView(gameScreen);
     }
 }
