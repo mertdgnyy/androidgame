@@ -34,4 +34,16 @@ public class Images {
         speed = 10 + number.nextInt(10);
         frame = 0;
     }
+
+    public Bitmap tBitmap(){
+        return gif[frame]; //Method for getting the bitmap according to frame size
+    }
+
+    public int tWidth(){
+        return gif[0].getWidth(); // It was in the GameScreen.java class that simply used for getting width of the bitmap
+    }
+
+    public int tHeight(){
+        return gif[0].getHeight(); //It was in the GameScreen.java class that simply used for getting height of the bitmap
+    }
 }

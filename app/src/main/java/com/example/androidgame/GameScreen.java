@@ -43,11 +43,7 @@ public class GameScreen extends View {
         rectangle = new Rect(0, 0, x, y);
 
 
-        gifx = x + 250;
-        gify = 50;
-        speed = 20;
 
-        gifwitdh = gif[0].getWidth();
 
         handler = new Handler();
         runnable = new Runnable() {
@@ -62,19 +58,19 @@ public class GameScreen extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawBitmap(bitmap_background,null,rectangle,null);
-        canvas.drawBitmap(gif[frame],gifx,gify,null);
-        frame++;
-
-        if (frame > 11 ) {
-            frame = 0;
-        }
-
-        gifx -= speed;
-
-        //random positions
-        if(gifx < -gifwitdh){
-
-        }
+//        canvas.drawBitmap(gif[frame],gifx,gify,null);
+//        frame++;
+//
+//        if (frame > 11 ) {
+//            frame = 0;
+//        }
+//
+//        gifx -= speed;
+//
+//        //random positions
+//        if(gifx < -gifwitdh){
+//
+//        }
 
         handler.postDelayed(runnable,update);
     }
