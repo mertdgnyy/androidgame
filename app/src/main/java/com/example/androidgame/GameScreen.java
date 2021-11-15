@@ -12,18 +12,16 @@ import android.os.Handler;
 import android.view.Display;
 import android.view.View;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 
 
 public class GameScreen extends View {
     static int x,y ;
+    ArrayList<Images> prof;
     Bitmap bitmap_background;
     Rect rectangle;
-     // For testing I determined 13 frame for animating bitmap
-
-    int gifwitdh;
-
     Handler handler;
     Runnable runnable;
     final long update = 30;
@@ -42,7 +40,13 @@ public class GameScreen extends View {
         y = dimension.y;
         rectangle = new Rect(0, 0, x, y);
 
-
+        prof = new ArrayList<>();
+        // In order to use more than 1 different bitmap-gifs I opened an arraylist.
+        // I use for loop in the GameScreen.java. I'm passing the context by adding objects in a list.
+        for(int x = 0; x < 2; x++){
+            Images prof1 = new Images(context);
+            prof.add(prof1);
+        }
 
 
         handler = new Handler();
@@ -57,6 +61,14 @@ public class GameScreen extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        for(int x=0; x < prof.size(); x++){ // prof.get(x) simply refers for the index in the for loop.
+            canvas.drawBitmap(prof.get(x).tBitmap(), prof.get(x).gifx,prof.get(x).gify, null);
+            // we are creating our new bitmaps with this for loop but we need to increase frame variable also
+            prof.get(x).frame+=1;
+            if(prof.get(x).frame > 12) { // resetting the frame after completing the animation of the gif-bitmap
+                prof.get(x).frame = 0;
+            }
+        }
         canvas.drawBitmap(bitmap_background,null,rectangle,null);
 //        canvas.drawBitmap(gif[frame],gifx,gify,null);
 //        frame++;
