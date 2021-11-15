@@ -20,9 +20,8 @@ public class GameScreen extends View {
     int x,y ;
     Bitmap bitmap_background;
     Rect rectangle;
-    Bitmap gif[] = new Bitmap[12]; // For testing I determined 13 frame for animating bitmap
-    int gifx,gify;
-    int speed, frame;
+     // For testing I determined 13 frame for animating bitmap
+
     int gifwitdh;
     Random number;
     Handler handler;
@@ -42,18 +41,7 @@ public class GameScreen extends View {
         x = dimension.x;
         y = dimension.y;
         rectangle = new Rect(0, 0, x, y);
-        gif[0] = BitmapFactory.decodeResource(getResources(),R.drawable.a1);
-        gif[1] = BitmapFactory.decodeResource(getResources(),R.drawable.a2);
-        gif[2] = BitmapFactory.decodeResource(getResources(),R.drawable.a3);
-        gif[3] = BitmapFactory.decodeResource(getResources(),R.drawable.a4);
-        gif[4] = BitmapFactory.decodeResource(getResources(),R.drawable.a5);
-        gif[5] = BitmapFactory.decodeResource(getResources(),R.drawable.a6);
-        gif[6] = BitmapFactory.decodeResource(getResources(),R.drawable.a7);
-        gif[7] = BitmapFactory.decodeResource(getResources(),R.drawable.a8);
-        gif[8] = BitmapFactory.decodeResource(getResources(),R.drawable.a9);
-        gif[9] = BitmapFactory.decodeResource(getResources(),R.drawable.a10);
-        gif[10] = BitmapFactory.decodeResource(getResources(),R.drawable.a11);
-        gif[11] = BitmapFactory.decodeResource(getResources(),R.drawable.a12);
+
 
         gifx = x + 250;
         gify = 50;
