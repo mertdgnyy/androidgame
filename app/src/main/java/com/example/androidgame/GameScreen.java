@@ -17,13 +17,13 @@ import java.util.Random;
 
 
 public class GameScreen extends View {
-    int x,y ;
+    static int x,y ;
     Bitmap bitmap_background;
     Rect rectangle;
      // For testing I determined 13 frame for animating bitmap
 
     int gifwitdh;
-    Random number;
+
     Handler handler;
     Runnable runnable;
     final long update = 30;
@@ -46,9 +46,9 @@ public class GameScreen extends View {
         gifx = x + 250;
         gify = 50;
         speed = 20;
-        frame = 0;
+
         gifwitdh = gif[0].getWidth();
-        number = new Random();
+
         handler = new Handler();
         runnable = new Runnable() {
             @Override
@@ -73,9 +73,7 @@ public class GameScreen extends View {
 
         //random positions
         if(gifx < -gifwitdh){
-            gifx = x + number.nextInt(600);
-            gify = number.nextInt(400);
-            speed = 10 + number.nextInt(17);
+
         }
 
         handler.postDelayed(runnable,update);

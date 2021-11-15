@@ -4,11 +4,15 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import java.util.Random;
+
 public class Images {
 
     Bitmap gif[] = new Bitmap[12];
     int gifx,gify;
     int speed, frame;
+    Random number;
+
     public Images(Context context){
 
         gif[0] = BitmapFactory.decodeResource(context.getResources(),R.drawable.a1);
@@ -24,5 +28,10 @@ public class Images {
         gif[10] = BitmapFactory.decodeResource(context.getResources(),R.drawable.a11);
         gif[11] = BitmapFactory.decodeResource(context.getResources(),R.drawable.a12);
 
+        number = new Random();
+        gifx = GameScreen.x + number.nextInt(600);
+        gify = number.nextInt(400);
+        speed = 10 + number.nextInt(10);
+        frame = 0;
     }
 }
