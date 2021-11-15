@@ -10,6 +10,7 @@ import android.graphics.Rect;
 
 import android.os.Handler;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -25,6 +26,8 @@ public class GameScreen extends View {
     Handler handler;
     Runnable runnable;
     final long update = 30;
+    Bitmap book,aimer;
+    int bookx,booky = 0;
 
     public GameScreen(Context context) {
         super(context);
@@ -58,6 +61,9 @@ public class GameScreen extends View {
             Images prof1 = new Images(context);
             prof.add(prof1);
         }
+        book = BitmapFactory.decodeResource(getResources(),R.drawable.book);
+        aimer = BitmapFactory.decodeResource(getResources(),R.drawable.aim);
+
     }
 
     @Override
@@ -78,20 +84,20 @@ public class GameScreen extends View {
             }
         }
 
-//        canvas.drawBitmap(gif[frame],gifx,gify,null);
-//        frame++;
-//
-//        if (frame > 11 ) {
-//            frame = 0;
-//        }
-//
-//        gifx -= speed;
-//
-//        //random positions
-//        if(gifx < -gifwitdh){
-//
-//        }
-
         handler.postDelayed(runnable,update);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch(event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                break;
+            case MotionEvent.ACTION_MOVE:
+                break;
+            case MotionEvent.ACTION_UP:
+                break;
+
+        }
+        return true;
     }
 }
