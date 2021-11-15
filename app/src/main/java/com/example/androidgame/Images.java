@@ -29,10 +29,16 @@ public class Images {
         gif[11] = BitmapFactory.decodeResource(context.getResources(),R.drawable.a12);
 
         number = new Random();
-        gifx = GameScreen.x + number.nextInt(600);
+
+        frame = 0;
+        positionReset();
+    }
+
+    public void positionReset(){
+
+        gifx = GameScreen.dx + number.nextInt(600);
         gify = number.nextInt(400);
         speed = 10 + number.nextInt(10);
-        frame = 0;
     }
 
     public Bitmap tBitmap(){
@@ -46,4 +52,5 @@ public class Images {
     public int tHeight(){
         return gif[0].getHeight(); //It was in the GameScreen.java class that simply used for getting height of the bitmap
     }
+
 }
