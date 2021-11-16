@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
-
+//Ali Mert Doganay
 public class GameScreen extends View {
     static int dx,dy ;
     ArrayList<Images> prof;
@@ -27,6 +27,7 @@ public class GameScreen extends View {
     Runnable runnable;
     final long update = 30;
     Bitmap book,aimer;
+    float tempPositionx, tempPositiony = 0; // will be used for the calculating temporary position of the bookPosition
     float bookx,booky = 0;
     float touchx,touchy = 0; // The first place of coordinates user touches the screen
     float dragx,dragy = 0; // coordinates of the aim button while dragging it to the below
@@ -84,6 +85,36 @@ public class GameScreen extends View {
 
                 prof.get(x).positionReset();
             }
+
+
+
+        }
+
+        // When user started to drag the aimer on screen, draw aimer bitmap.
+        if(dragx > 0){
+            canvas.drawBitmap(aimer,dragx-aimer.getWidth()/2,dragy-aimer.getHeight()/2,null );
+        }
+
+        // when user stops to dragging with the value grater than 0 I draw bitmap.
+        //In this case, I took the abs of the values since the value can be negative or positive.
+        // Because if user drags from left side to right side it will definitely a positive value.
+        // But if drags from right to left it will be negative, so I take the abs of it.
+        if(Math.abs(dragy - touchy) > 0 || Math.abs(dragx - touchx) > 0 ){
+            canvas.drawBitmap(aimer,touchx-aimer.getWidth()/2,touchy-aimer.getHeight()/2,null );
+        }
+
+
+        //It was the most difficult part for me to implement.
+        // Simply, if the bookposition is greater than a value that I determined
+        // I increment tempPositions with the book positions that enables me
+        // to move the aimer bitmap in a correct forward path.
+        if(Math.abs(bookPositionx) > 2 || Math.abs(bookPositiony) < 2){
+            bookx = dragx - book.getWidth()/2 - tempPositionx;
+            booky = dragy - book.getHeight()/2 - tempPositiony;
+            canvas.drawBitmap(book,bookx,booky,null);
+            tempPositiony += bookPositiony;
+            tempPositionx += bookPositionx;
+
         }
 
         handler.postDelayed(runnable,update);
@@ -95,14 +126,20 @@ public class GameScreen extends View {
             case MotionEvent.ACTION_UP: // when user stop the dragging point
                 dragx = event.getX();
                 dragy = event.getY();
-                
+
                 bookx = event.getX();   // the point where books started to be shooted from the point user stops dragging aim button
                 booky = event.getY();
+
+                bookPositionx = dragx - touchx;
+                bookPositiony = dragy - touchy;
 
                 break;
             case MotionEvent.ACTION_DOWN: //touch
                 touchy = event.getY();
                 touchx = event.getX();
+
+                // Each time when user interacts with the aim button I reset the variables to the 0 in order to produce new bitmaps.
+                dragx = dragy = tempPositionx = tempPositiony = bookPositiony = bookPositionx = 0;
                 break;
             case MotionEvent.ACTION_MOVE: //drag
                 dragx = event.getX();

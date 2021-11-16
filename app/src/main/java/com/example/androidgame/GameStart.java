@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
+//Ali Mert Doganay
 public class GameStart extends AppCompatActivity {
 
     GameScreen gameScreen;

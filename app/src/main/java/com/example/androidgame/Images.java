@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 
 import java.util.Random;
 
+//Ali Mert Doganay
 public class Images {
 
     Bitmap gif[] = new Bitmap[12];
@@ -38,7 +39,7 @@ public class Images {
 
         gifx = GameScreen.dx + number.nextInt(600);
         gify = number.nextInt(400);
-        speed = 10 + number.nextInt(10);
+        speed = 10 + number.nextInt(5);
     }
 
     public Bitmap tBitmap(){
