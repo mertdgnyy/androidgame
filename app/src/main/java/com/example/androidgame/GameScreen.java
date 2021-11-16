@@ -27,7 +27,11 @@ public class GameScreen extends View {
     Runnable runnable;
     final long update = 30;
     Bitmap book,aimer;
-    int bookx,booky = 0;
+    float bookx,booky = 0;
+    float touchx,touchy = 0; // The first place of coordinates user touches the screen
+    float dragx,dragy = 0; // coordinates of the aim button while dragging it to the below
+    float bookPositionx, bookPositiony = 0;
+
 
     public GameScreen(Context context) {
         super(context);
@@ -42,11 +46,8 @@ public class GameScreen extends View {
         dx = dimension.x;
         dy = dimension.y;
         rectangle = new Rect(0, 0, dx, dy);
-
-
-
-
         handler = new Handler();
+
         runnable = new Runnable() {
             @Override
             public void run() {
@@ -63,6 +64,7 @@ public class GameScreen extends View {
         }
         book = BitmapFactory.decodeResource(getResources(),R.drawable.book);
         aimer = BitmapFactory.decodeResource(getResources(),R.drawable.aim);
+
 
     }
 
@@ -88,14 +90,25 @@ public class GameScreen extends View {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(MotionEvent event) { //touching the aimer
         switch(event.getAction()){
-            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_UP: // when user stop the dragging point
+                dragx = event.getX();
+                dragy = event.getY();
+                
+                bookx = event.getX();   // the point where books started to be shooted from the point user stops dragging aim button
+                booky = event.getY();
+
                 break;
-            case MotionEvent.ACTION_MOVE:
+            case MotionEvent.ACTION_DOWN: //touch
+                touchy = event.getY();
+                touchx = event.getX();
                 break;
-            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_MOVE: //drag
+                dragx = event.getX();
+                dragy = event.getY();
                 break;
+
 
         }
         return true;
