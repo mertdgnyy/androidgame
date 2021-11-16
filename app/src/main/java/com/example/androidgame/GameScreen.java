@@ -73,11 +73,11 @@ public class GameScreen extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawBitmap(bitmap_background,null,rectangle,null);
-        for(int x=0; x < prof.size(); x++){ // prof.get(x) simply refers for the index in the for loop.
-            canvas.drawBitmap(prof.get(x).tBitmap(), prof.get(x).gifx,prof.get(x).gify, null);
+        for(int x=0; x < prof.size(); x++) { // prof.get(x) simply refers for the index in the for loop.
+            canvas.drawBitmap(prof.get(x).tBitmap(), prof.get(x).gifx, prof.get(x).gify, null);
             // we are creating our new bitmaps with this for loop but we need to increase frame variable also
-            prof.get(x).frame+=1;
-            if(prof.get(x).frame > 11) { // resetting the frame after completing the animation of the gif-bitmap
+            prof.get(x).frame += 1;
+            if (prof.get(x).frame > 11) { // resetting the frame after completing the animation of the gif-bitmap
                 prof.get(x).frame = 0;
             }
             prof.get(x).gifx -= prof.get(x).speed; //decreasing the x cord. of the gif(bitmap)(or prof) by the speed of it.
@@ -86,8 +86,20 @@ public class GameScreen extends View {
                 prof.get(x).positionReset();
             }
 
+            // In my game, if the book's left edge is less than prof's right edge ,
+            // if the book's right edge is greater than prof's left edge,
+            // If the book's y coordinate, is greater than prof's bottom edge,
+            // If the book's y coordinate is less than prof's top edge,
+            // If these 4 conditions satisfies, collision detection satisfies, that means
+            // book is inside of the prof bitmap, and I will terminate the flying bitmaps like they are shooted by the aimer.
+            if (booky <= (prof.get(x).gify + prof.get(x).tHeight()) &&
+                    booky >= prof.get(x).gify &&
+                    bookx <= (prof.get(x).gifx + prof.get(x).tWidth()) &&
+                    bookx + book.getWidth() >= prof.get(x).gifx) {
+                prof.get(x).positionReset();
 
 
+            }
         }
 
         // When user started to drag the aimer on screen, draw aimer bitmap.
