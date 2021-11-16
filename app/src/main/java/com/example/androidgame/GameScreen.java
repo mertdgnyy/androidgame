@@ -32,7 +32,9 @@ public class GameScreen extends View {
     float touchx,touchy = 0; // The first place of coordinates user touches the screen
     float dragx,dragy = 0; // coordinates of the aim button while dragging it to the below
     float bookPositionx, bookPositiony = 0;
-
+    int health = 5;
+    int score = 0;
+    boolean gameIs = true;
 
     public GameScreen(Context context) {
         super(context);
@@ -72,6 +74,9 @@ public class GameScreen extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        if(health == 0){
+            gameIs = false;
+        }
         canvas.drawBitmap(bitmap_background,null,rectangle,null);
         for(int x=0; x < prof.size(); x++) { // prof.get(x) simply refers for the index in the for loop.
             canvas.drawBitmap(prof.get(x).tBitmap(), prof.get(x).gifx, prof.get(x).gify, null);
@@ -84,6 +89,7 @@ public class GameScreen extends View {
             if (prof.get(x).gifx < -prof.get(x).tWidth()) { // if bitmap reaches the left side we should reset the position from beginning of the right side
 
                 prof.get(x).positionReset();
+                health -= 1;
             }
 
             // In my game, if the book's left edge is less than prof's right edge ,
@@ -97,6 +103,7 @@ public class GameScreen extends View {
                     bookx <= (prof.get(x).gifx + prof.get(x).tWidth()) &&
                     bookx + book.getWidth() >= prof.get(x).gifx) {
                 prof.get(x).positionReset();
+                score+=1;
 
 
             }
@@ -129,7 +136,9 @@ public class GameScreen extends View {
 
         }
 
-        handler.postDelayed(runnable,update);
+        if(gameIs == true){
+        handler.postDelayed(runnable,update); }
+
     }
 
     @Override
