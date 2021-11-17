@@ -37,7 +37,7 @@ public class Images {
 
     public void positionReset(){
 
-        gifx = GameScreen.dx + number.nextInt(600);
+        gifx = GameScreen.dx + number.nextInt(500);
         gify = number.nextInt(400);
         speed = 10 + number.nextInt(5);
     }

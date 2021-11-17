@@ -2,9 +2,12 @@ package com.example.androidgame;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 
@@ -35,6 +38,8 @@ public class GameScreen extends View {
     int health = 5;
     int score = 0;
     boolean gameIs = true;
+    Context context;
+    Paint line;
 
     public GameScreen(Context context) {
         super(context);
@@ -68,7 +73,10 @@ public class GameScreen extends View {
         book = BitmapFactory.decodeResource(getResources(),R.drawable.book);
         aimer = BitmapFactory.decodeResource(getResources(),R.drawable.aim);
 
-
+        this.context = context;
+        line = new Paint();
+        line.setColor(Color.WHITE);
+        line.setStrokeWidth(10);
     }
 
     @Override
@@ -76,6 +84,10 @@ public class GameScreen extends View {
         super.onDraw(canvas);
         if(health == 0){
             gameIs = false;
+            Intent intent = new Intent(context,GameOver.class);
+            intent.putExtra("score", score);
+            context.startActivity(intent);
+            ((Activity)context).finish();
         }
         canvas.drawBitmap(bitmap_background,null,rectangle,null);
         for(int x=0; x < prof.size(); x++) { // prof.get(x) simply refers for the index in the for loop.
@@ -110,7 +122,7 @@ public class GameScreen extends View {
         }
 
         // When user started to drag the aimer on screen, draw aimer bitmap.
-        if(dragx > 0){
+        if(touchx > 0 && touchy > dy * 0.65f){
             canvas.drawBitmap(aimer,dragx-aimer.getWidth()/2,dragy-aimer.getHeight()/2,null );
         }
 
@@ -118,8 +130,9 @@ public class GameScreen extends View {
         //In this case, I took the abs of the values since the value can be negative or positive.
         // Because if user drags from left side to right side it will definitely a positive value.
         // But if drags from right to left it will be negative, so I take the abs of it.
-        if(Math.abs(dragy - touchy) > 0 || Math.abs(dragx - touchx) > 0 ){
-            canvas.drawBitmap(aimer,touchx-aimer.getWidth()/2,touchy-aimer.getHeight()/2,null );
+        // Also after resetting aimer bitmap my dragy was always 0, so to fix the condition I added 3rd one because of action_down event
+        if((Math.abs(dragy - touchy) > 0 || Math.abs(dragx - touchx) > 0) && dragy > 0 && dragy > dy * 0.65f ){
+            canvas.drawBitmap(aimer,dragx-aimer.getWidth()/2,dragy-aimer.getHeight()/2,null );
         }
 
 
@@ -127,7 +140,7 @@ public class GameScreen extends View {
         // Simply, if the bookposition is greater than a value that I determined
         // I increment tempPositions with the book positions that enables me
         // to move the aimer bitmap in a correct forward path.
-        if(Math.abs(bookPositionx) > 2 || Math.abs(bookPositiony) < 2){
+        if((Math.abs(bookPositionx) > 11 || Math.abs(bookPositiony) < 11) && touchy > dy * 0.65f && dragy > dy * 0.65f ){
             bookx = dragx - book.getWidth()/2 - tempPositionx;
             booky = dragy - book.getHeight()/2 - tempPositiony;
             canvas.drawBitmap(book,bookx,booky,null);
@@ -137,7 +150,8 @@ public class GameScreen extends View {
         }
 
         if(gameIs == true){
-        handler.postDelayed(runnable,update); }
+            canvas.drawLine(0,dy * 0.65f,dx  ,dy *0.65f,line);
+            handler.postDelayed(runnable,update); }
 
     }
 
@@ -156,11 +170,11 @@ public class GameScreen extends View {
 
                 break;
             case MotionEvent.ACTION_DOWN: //touch
-                touchy = event.getY();
-                touchx = event.getX();
 
                 // Each time when user interacts with the aim button I reset the variables to the 0 in order to produce new bitmaps.
                 dragx = dragy = tempPositionx = tempPositiony = bookPositiony = bookPositionx = 0;
+                touchy = event.getY();
+                touchx = event.getX();
                 break;
             case MotionEvent.ACTION_MOVE: //drag
                 dragx = event.getX();
