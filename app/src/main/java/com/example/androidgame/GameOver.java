@@ -18,7 +18,7 @@ public class GameOver extends AppCompatActivity {
 
         int score = getIntent().getExtras().getInt("score");
         endScore = findViewById(R.id.endScore);
-        endScore.setText(""+ score);
+        endScore.setText(""+ score + "           Press centered button the restart game");
     }
 
     public void restart(View view) {
