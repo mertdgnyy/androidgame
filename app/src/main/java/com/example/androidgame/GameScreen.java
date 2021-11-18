@@ -122,8 +122,8 @@ public class GameScreen extends View {
         }
 
         // When user started to drag the aimer on screen, draw aimer bitmap.
-        if(touchx > 0 && touchy > dy * 0.75f){
-            canvas.drawBitmap(aimer,dragx-aimer.getWidth()/2,dragy-aimer.getHeight()/2,null );
+        if(touchx > 0 && touchy > dy * 0.70f){
+            canvas.drawBitmap(aimer,touchx-aimer.getWidth()/2,touchy-aimer.getHeight()/2,null );
         }
 
         // when user stops to dragging with the value grater than 0 I draw bitmap.
@@ -131,7 +131,7 @@ public class GameScreen extends View {
         // Because if user drags from left side to right side it will definitely a positive value.
         // But if drags from right to left it will be negative, so I take the abs of it.
         // Also after resetting aimer bitmap my dragy was always 0, so to fix the condition I added 3rd one because of action_down event
-        if((Math.abs(dragy - touchy) > 0 || Math.abs(dragx - touchx) > 0) && dragy > 0 && dragy > dy * 0.75f ){
+        if((Math.abs(dragy - touchy) > 0 || Math.abs(dragx - touchx) > 0) && dragy > 0 && dragy > dy * 0.70f ){
             canvas.drawBitmap(aimer,dragx-aimer.getWidth()/2,dragy-aimer.getHeight()/2,null );
         }
 
@@ -140,7 +140,7 @@ public class GameScreen extends View {
         // Simply, if the bookposition is greater than a value that I determined
         // I increment tempPositions with the book positions that enables me
         // to move the aimer bitmap in a correct forward path.
-        if((Math.abs(bookPositionx) > 11 || Math.abs(bookPositiony) < 11) && touchy > dy * 0.75f && dragy > dy * 0.75f ){
+        if((Math.abs(bookPositionx) > 10 || Math.abs(bookPositiony) < 10) && touchy > dy * 0.70f && dragy > dy * 0.70f ){
             bookx = dragx - book.getWidth()/2 - tempPositionx;
             booky = dragy - book.getHeight()/2 - tempPositiony;
             canvas.drawBitmap(book,bookx,booky,null);
@@ -150,7 +150,7 @@ public class GameScreen extends View {
         }
 
         if(gameIs == true){
-            canvas.drawLine(0,dy * 0.75f,dx  ,dy *0.75f,line);
+            canvas.drawLine(0,dy * 0.70f,dx  ,dy *0.70f,line);
             handler.postDelayed(runnable,update); }
 
     }
