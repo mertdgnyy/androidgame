@@ -43,7 +43,7 @@ public class GameScreen extends View {
 
     public GameScreen(Context context) {
         super(context);
-        bitmap_background = BitmapFactory.decodeResource(getResources(),R.drawable.lecturehall);
+        bitmap_background = BitmapFactory.decodeResource(getResources(),R.drawable.classroom);
 
         // In order to adjust canvas size manually (Because it did not fit the whole screen,
         // I took the dimensions of the screen by x and y
@@ -70,7 +70,7 @@ public class GameScreen extends View {
             Images prof1 = new Images(context);
             prof.add(prof1);
         }
-        book = BitmapFactory.decodeResource(getResources(),R.drawable.book);
+        book = BitmapFactory.decodeResource(getResources(),R.drawable.bookp);
         aimer = BitmapFactory.decodeResource(getResources(),R.drawable.aim);
 
         this.context = context;
@@ -94,7 +94,7 @@ public class GameScreen extends View {
             canvas.drawBitmap(prof.get(x).tBitmap(), prof.get(x).gifx, prof.get(x).gify, null);
             // we are creating our new bitmaps with this for loop but we need to increase frame variable also
             prof.get(x).frame += 1;
-            if (prof.get(x).frame > 11) { // resetting the frame after completing the animation of the gif-bitmap
+            if (prof.get(x).frame > 10) { // resetting the frame after completing the animation of the gif-bitmap
                 prof.get(x).frame = 0;
             }
             prof.get(x).gifx -= prof.get(x).speed; //decreasing the x cord. of the gif(bitmap)(or prof) by the speed of it.
@@ -122,7 +122,7 @@ public class GameScreen extends View {
         }
 
         // When user started to drag the aimer on screen, draw aimer bitmap.
-        if(touchx > 0 && touchy > dy * 0.65f){
+        if(touchx > 0 && touchy > dy * 0.75f){
             canvas.drawBitmap(aimer,dragx-aimer.getWidth()/2,dragy-aimer.getHeight()/2,null );
         }
 
@@ -131,7 +131,7 @@ public class GameScreen extends View {
         // Because if user drags from left side to right side it will definitely a positive value.
         // But if drags from right to left it will be negative, so I take the abs of it.
         // Also after resetting aimer bitmap my dragy was always 0, so to fix the condition I added 3rd one because of action_down event
-        if((Math.abs(dragy - touchy) > 0 || Math.abs(dragx - touchx) > 0) && dragy > 0 && dragy > dy * 0.65f ){
+        if((Math.abs(dragy - touchy) > 0 || Math.abs(dragx - touchx) > 0) && dragy > 0 && dragy > dy * 0.75f ){
             canvas.drawBitmap(aimer,dragx-aimer.getWidth()/2,dragy-aimer.getHeight()/2,null );
         }
 
@@ -140,7 +140,7 @@ public class GameScreen extends View {
         // Simply, if the bookposition is greater than a value that I determined
         // I increment tempPositions with the book positions that enables me
         // to move the aimer bitmap in a correct forward path.
-        if((Math.abs(bookPositionx) > 11 || Math.abs(bookPositiony) < 11) && touchy > dy * 0.65f && dragy > dy * 0.65f ){
+        if((Math.abs(bookPositionx) > 11 || Math.abs(bookPositiony) < 11) && touchy > dy * 0.75f && dragy > dy * 0.75f ){
             bookx = dragx - book.getWidth()/2 - tempPositionx;
             booky = dragy - book.getHeight()/2 - tempPositiony;
             canvas.drawBitmap(book,bookx,booky,null);
@@ -150,7 +150,7 @@ public class GameScreen extends View {
         }
 
         if(gameIs == true){
-            canvas.drawLine(0,dy * 0.65f,dx  ,dy *0.65f,line);
+            canvas.drawLine(0,dy * 0.75f,dx  ,dy *0.75f,line);
             handler.postDelayed(runnable,update); }
 
     }

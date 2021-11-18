@@ -16,18 +16,18 @@ public class Images {
 
     public Images(Context context){
 
-        gif[0] = BitmapFactory.decodeResource(context.getResources(),R.drawable.a1);
-        gif[1] = BitmapFactory.decodeResource(context.getResources(),R.drawable.a2);
-        gif[2] = BitmapFactory.decodeResource(context.getResources(),R.drawable.a3);
-        gif[3] = BitmapFactory.decodeResource(context.getResources(),R.drawable.a4);
-        gif[4] = BitmapFactory.decodeResource(context.getResources(),R.drawable.a5);
-        gif[5] = BitmapFactory.decodeResource(context.getResources(),R.drawable.a6);
-        gif[6] = BitmapFactory.decodeResource(context.getResources(),R.drawable.a7);
-        gif[7] = BitmapFactory.decodeResource(context.getResources(),R.drawable.a8);
-        gif[8] = BitmapFactory.decodeResource(context.getResources(),R.drawable.a9);
-        gif[9] = BitmapFactory.decodeResource(context.getResources(),R.drawable.a10);
-        gif[10] = BitmapFactory.decodeResource(context.getResources(),R.drawable.a11);
-        gif[11] = BitmapFactory.decodeResource(context.getResources(),R.drawable.a12);
+        gif[0] = BitmapFactory.decodeResource(context.getResources(),R.drawable.profgif1);
+        gif[1] = BitmapFactory.decodeResource(context.getResources(),R.drawable.profgif2);
+        gif[2] = BitmapFactory.decodeResource(context.getResources(),R.drawable.profgif3);
+        gif[3] = BitmapFactory.decodeResource(context.getResources(),R.drawable.profgif4);
+        gif[4] = BitmapFactory.decodeResource(context.getResources(),R.drawable.profgif5);
+        gif[5] = BitmapFactory.decodeResource(context.getResources(),R.drawable.profgif6);
+        gif[6] = BitmapFactory.decodeResource(context.getResources(),R.drawable.profgif7);
+        gif[7] = BitmapFactory.decodeResource(context.getResources(),R.drawable.profgif8);
+        gif[8] = BitmapFactory.decodeResource(context.getResources(),R.drawable.profgif9);
+        gif[9] = BitmapFactory.decodeResource(context.getResources(),R.drawable.profgif10);
+        gif[10] = BitmapFactory.decodeResource(context.getResources(),R.drawable.profgif11);
+
 
         number = new Random();
 

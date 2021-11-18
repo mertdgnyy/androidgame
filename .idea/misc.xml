@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/GameDev-441/androidgame/app/src/main/res/drawable-anydpi/aimm.xml" value="0.13148148148148148" />
+        <entry key="..\:/GameDev-441/androidgame/app/src/main/res/drawable-anydpi/bookk.xml" value="0.13148148148148148" />
         <entry key="..\:/GameDev-441/androidgame/app/src/main/res/drawable-anydpi/buttonR.xml" value="0.1398148148148148" />
         <entry key="..\:/GameDev-441/androidgame/app/src/main/res/drawable-anydpi/buttonn.xml" value="0.1" />
         <entry key="..\:/GameDev-441/androidgame/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
@@ -11,7 +13,10 @@
         <entry key="..\:/GameDev-441/androidgame/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/GameDev-441/androidgame/app/src/main/res/layout/activity_main.xml" value="0.67" />
         <entry key="..\:/GameDev-441/androidgame/app/src/main/res/layout/gameover_screen.xml" value="0.22" />
+        <entry key="..\:/GameDev-441/androidgame/app/src/main/res/mipmap-anydpi-v26/bookt.xml" value="0.13148148148148148" />
+        <entry key="..\:/GameDev-441/androidgame/app/src/main/res/mipmap-anydpi-v26/bookt_round.xml" value="0.13148148148148148" />
         <entry key="..\:/GameDev-441/androidgame/app/src/main/res/mipmap-anydpi-v26/butonn.xml" value="0.1" />
+        <entry key="..\:/GameDev-441/androidgame/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.13148148148148148" />
       </map>
     </option>
   </component>
